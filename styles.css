@@ -1,0 +1,33 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.btn{
+    width: 75px;
+    height: 75px;
+    margin: 15px;
+    font-size: 40px;
+}
+
+.number{
+    border: 1px solid;
+    border-color: greenyellow;
+    border-radius: 10px;
+}
+
+.number:hover{
+    background-color: palegreen;
+}
+
+.operator{
+    border: 1px solid steelblue;
+}
+
+#clear-btn{
+    border: 1px solid violet;
+}
