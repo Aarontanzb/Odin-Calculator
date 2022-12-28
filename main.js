@@ -21,3 +21,66 @@ function handleNumber(num) {
     currentValue += num
     }
 };
+
+operators.forEach(op => op.addEventListener('click', function(e) {
+    handleOperator(e.target.textContent);
+    previousScreen.textContent = previousValue + ' ' + operator;
+    currentScreen.textContent = currentValue;
+}));
+
+function handleOperator(op) {
+    operator = op;
+    previousValue = currentValue;
+    currentValue = '';
+};
+
+clear.addEventListener('click', function() {
+    currentValue = '';
+    previousValue = '';
+    operator = '';
+    previousScreen.textContent = currentValue;
+    currentScreen.textContent = currentValue;
+});
+
+equal.addEventListener('click', function() {
+    calculate();
+    previousScreen.textContent = '';
+    currentScreen.textContent = previousValue;
+});
+
+function calculate() {
+    if (previousValue != '' && currentValue != ''){
+        previousValue = Number(previousValue);
+        currentValue = Number(currentValue);
+
+        if (operator === "+") {
+            previousValue += currentValue;
+        }
+        else if (operator === "-") {
+            previousValue -= currentValue;
+        }
+        else if (operator === "x") {
+            previousValue *= currentValue;
+        }
+        else {
+            previousValue /= currentValue;
+        }
+
+        previousValue = roundNumber(previousValue);
+        currentValue = previousValue;
+    }
+};
+
+function roundNumber(num) {
+    return (Math.round(num * 1000) / 1000).toFixed(3);
+}
+
+decimal.addEventListener('click', function(){
+    addDecimal();
+})
+
+function addDecimal() {
+    if (!currentValue.includes('.')) {
+        currentValue += '.';
+    };
+}
